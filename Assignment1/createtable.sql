@@ -1,20 +1,8 @@
-/*
-C_User --[Uemail/ username,employment, past qualification, institution, image,contactno]
-Instructor -- [Iemail/ iname, Degree, social media, image, work_exp, contactno]
-Courses -- [ID/ {instructor ID}, {UID}, cname, category, overview, duration, current enrollments, rating]
-courseWeeks -- [{ID}/ weekNum/ assignment, solution, topics, videos, resources]
-UserMaterial - [{ID}/ {Uemail}/ notes_links, certificates, grades, status]
-Forum -- [postID/ {Memail}, {courseID}, email, date, content, status]
-Moderator -- [Memail/ name, job_post, image, contactNo]
-University -- [UID/,Uname Repemail, RepName, logo, Info, contactno]
-
-*/
-
 create table C_User (
     uemail varchar(50) primary key,
     username varchar(50) not null,
-    employment varchar(30) not null,
-    past_qualification varchar(100) not null,
+    employment varchar(30) not null,	/*Student, Intern, Employed*/
+    past_qualification varchar(100) not null,		
     institution varchar(30) not null,
     img_path varchar(50) not null,
     contact_no int not null
@@ -23,7 +11,7 @@ create table C_User (
 create table Instructor (
     iemail varchar(50) primary key,
     iname varchar(50) not null,
-    degree varchar(30) not null,
+    degree varchar(30) not null,	/*mba, phd, BE, BTech*/
     social_media varchar(50) not null,
     img_path varchar(50) not null,
     work_exp varchar(100) not null,
@@ -40,11 +28,10 @@ create table university (
     contact_no int not null
 )
 
-
 create table moderator (
     memail varchar(50) primary key,
     mname varchar(100) not null,
-    job_post varchar(50) not null,
+    job_post varchar(50) not null,	/*Senior, Junior, Incharge*/
     img_path varchar(50) not null,
     contact_no int not null
 )
@@ -56,8 +43,8 @@ create table Courses (
     cname varchar(50) not null,
     category varchar(20) not null,
     overview varchar(200) not null,
-    duration int not null,
-    curr_enroll int not null,
+    duration int not null,		/*no of weeks*/
+    curr_enroll int not null,/*i digit number*/
     ratings FLOAT not null,
 )
 
@@ -78,10 +65,10 @@ ALTER TABLE Courses
 create table user_material (
     courseid int not null,
     uemail varchar(50) not null,
-    notes_link varchar(300),
+    notes_link varchar(300),	/*tuple*/
     certificates_path varchar(100),
-    grades int,
-    status varchar(20) not null,
+    grades int,		/*percentage*/
+    status varchar(20) not null,	
     primary key(courseid,uemail)
 )
 
@@ -106,7 +93,7 @@ create table forum(
     uemail varchar(50) not null,
     pdate_time DATETIME not null,
     content varchar(200) not null,
-    pstatus varchar(20) not null
+    pstatus varchar(20) not null	/*resolved, pending, irrelevant*/
 )
 
 ALTER TABLE forum
